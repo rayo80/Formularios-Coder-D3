@@ -1,0 +1,49 @@
+
+<mat-card>
+    <form [formGroup]="formUsuario" (ngSubmit)="agregar()" class="m-3 col-lg-6">
+        <div class="form-group">
+            <label for="nombre">User</label>
+            <input type="text" id="user" formControlName="user" class="form-control">
+            <span *ngIf="formUsuario.get('user')?.errors?.['required']" class="text-secondary">
+                Este campo es requerido
+            </span>
+            <div *ngIf="this.formUsuario.get('user')?.errors?.['minlength']" class="text-danger">
+                minimo 4 caracteres
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name">Nombre</label>
+            <input type="text" id="name" formControlName="name" class="form-control">
+            <span *ngIf="formUsuario.get('name')?.errors?.['required']" class="text-secondary">
+                Este campo es requerido
+            </span>
+            <span *ngIf="this.formUsuario.get('name')?.errors?.['minlength']" class="text-danger">
+                minimo 3 caracteres
+            </span>
+        </div>
+        <div class="form-group">
+            <label for="edad">Edad</label>
+            <input type="text" id="edad" formControlName="edad" class="form-control">
+            <span *ngIf="formUsuario.get('edad')?.errors?.['required']" class="text-secondary">
+                Este campo es requerido
+            </span>
+            <span *ngIf="this.formUsuario.get('edad')?.errors?.['maxlength']" class="text-danger">
+                max 2 caracteres
+            </span>
+        </div>
+
+         <div class="form-group">
+            <label for="curso">Email</label>
+            <input type="text" id="email" formControlName="email" class="form-control">
+            <span *ngIf="formUsuario.get('email')?.errors?.['email']" class="text-danger">
+                No tiene formato de email
+            </span>
+        </div>
+        
+        <button mat-raised-button color="primary">
+            Enviar
+        </button>
+        <div class="alert alert-danger" *ngIf="error">
+            Hay errores</div>
+    </form>  
+</mat-card>
