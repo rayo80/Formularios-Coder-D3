@@ -22,6 +22,7 @@ export class FormUserComponent implements OnInit {
       edad:['',[Validators.required, Validators.maxLength(2)]],
   });
   }
+
   agregar(){
     if((this.formUsuario.status != 'INVALID')){     
       this.UserAdded.emit(this.formUsuario.value)
@@ -30,5 +31,8 @@ export class FormUserComponent implements OnInit {
       this.error=true;
       console.log(this.formUsuario)
     }
+  }
+  touchedvalidate(field: string, type_validate:string){
+    return this.formUsuario.get(field)?.touched && this.formUsuario.get(field)?.errors?.[type_validate]
   }
 }
